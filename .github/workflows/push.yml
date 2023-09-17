@@ -12,10 +12,6 @@ jobs:
           touch `date +'%y%m%d%H%M%S'`.txt
       - name: Commit
         run: |
-          git reflog
-          git diff --cached --exit-code .
-          echo $?
-          [[ ! $(git diff HEAD^ --exit-code .) ]] && echo "Nothing to commit." && exit 0
           git config user.name "Auto Commit By GitHub Actions"
           git pull
           git add .
