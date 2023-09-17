@@ -1,6 +1,7 @@
 name: Push test
 on:
   push:
+permissions: write-all
 jobs:
   build:
     runs-on: ubuntu-latest
