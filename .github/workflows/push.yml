@@ -1,0 +1,20 @@
+name: Push test
+on:
+  push:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: push files
+        run: |
+          touch `date +'%y%m%d%H%M%S'`.txt
+      - name: Commit
+        run: |
+          [[ ! $(git diff --exit-code go ts) ]] && echo "Nothing to commit." && exit 0
+          git config user.name "Auto Commit By GitHub Actions"
+          git pull
+          git add .
+          git commit -m "Auto Commit"
+          git push
